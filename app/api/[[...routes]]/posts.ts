@@ -12,8 +12,6 @@ const postsApi = new Hono()
     "/",
     clerkMiddleware(),
     async (ctx) => {
-      const auth = await getAuth(ctx);
-      if (!auth?.userId) return ctx.json({ message: "unauthorized" }, 401);
       const data = await db
         .select({
           id: posts.id,
